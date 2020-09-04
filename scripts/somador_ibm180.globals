@@ -1,0 +1,12 @@
+set defHierChar {/}
+set delaycal_input_transition_delay {0.1ps}
+set fpIsMaxIoHeight 0
+set init_design_settop 0
+set init_gnd_net {GND}
+set init_lef_file "${TECH_DIR}/IBM_PDK/cmrf7sf/V2.0.0.2AM/ibm_cmos7rf_std_cell_20111130/std_cell/v.20111130/lef/cmos7rf_6ML_tech.lef ${TECH_DIR}/IBM_PDK/cmrf7sf/V2.0.0.2AM/ibm_cmos7rf_std_cell_20111130/std_cell/v.20111130/lef/ibm_cmos7rf_sc_12Track.lef"
+set init_mmmc_file ../scripts/${DESIGNS}_${VENDOR}.view
+set init_oa_search_lib {}
+set init_pwr_net {VDD}
+set init_verilog ../../synthesis/deliverables/${DESIGNS}.v
+set lsgOCPGainMult 1.000000
+

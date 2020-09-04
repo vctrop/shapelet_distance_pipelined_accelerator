@@ -1,0 +1,4 @@
+This dataset was donated by Manuela Veloso and Douglas Vail of
+Carnegie Mellon University. The robot has roll/pitch/yaw
+accelerometers. This data is just the X-axis. The task is to detect
+the surface being walked on (cement or carpet for Sony1).

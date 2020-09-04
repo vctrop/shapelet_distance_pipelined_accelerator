@@ -1,0 +1,26 @@
+# timing libraries
+create_library_set -name fast -timing $BEST_LIST
+create_library_set -name slow -timing $WORST_LIST
+
+# capacitance files
+create_rc_corner -name rc_best -cap_table $CAP_MIN -T -40
+create_rc_corner -name rc_worst -cap_table $CAP_MAX -T 125
+
+# operating conditions
+create_op_cond -name oc_slow -library_file $WORST_LIST -P {1.0} -V {0.88} -T {125} 
+create_op_cond -name oc_fast -library_file $BEST_LIST -P {1.0} -V {1.20} -T {-40} 
+
+# creating delay corners
+create_delay_corner -name slow_max -library_set slow -rc_corner rc_worst -opcond oc_slow
+create_delay_corner -name fast_min -library_set fast -rc_corner rc_best -opcond oc_fast
+
+# adding constraints
+create_constraint_mode -name normal_rtl_compiler_slow_max -sdc_files $SYNT_DIR/constraints/$DESIGNS.sdc
+
+# creating analysis views
+create_analysis_view -name analysis_normal_slow_max -constraint_mode {normal_rtl_compiler_slow_max} -delay_corner slow_max
+create_analysis_view -name analysis_normal_fast_min -constraint_mode {normal_rtl_compiler_slow_max} -delay_corner fast_min
+
+# defining which views to use in hold and setup analyses
+set_analysis_view -setup [list analysis_normal_slow_max] -hold [list analysis_normal_fast_min]
+
