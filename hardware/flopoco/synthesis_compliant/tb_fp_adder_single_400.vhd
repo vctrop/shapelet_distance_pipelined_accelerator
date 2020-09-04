@@ -19,10 +19,10 @@ end entity;
 
 architecture behavorial of tb_fp_adder_single_400 is
    component fp_adder_single_400 is
-      port map (
-        clk, rst    : in std_logic,
-        X           : in  std_logic_vector(8+23+2 downto 0),
-        Y           : in  std_logic_vector(8+23+2 downto 0),
+      port (
+        clk, rst    : in std_logic;
+        X           : in  std_logic_vector(8+23+2 downto 0);
+        Y           : in  std_logic_vector(8+23+2 downto 0);
         R           : out  std_logic_vector(8+23+2 downto 0)
       );
    end component;
@@ -123,7 +123,7 @@ architecture behavorial of tb_fp_adder_single_400 is
    
    constant half_clk_period : time := 2 ns;
    constant clk_period : time := 2 * half_clk_period;
-   constant pipeline_depth : integer := 7
+   constant pipeline_depth : integer := 7;
    
 begin
    DUV: fp_adder_single_400  -- pipelineDepth=7 maxInDelay=0
